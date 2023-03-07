@@ -45,6 +45,7 @@ const RepositoryItem = ({ repo }) => {
       overflow: 'hidden'
     }
   }
+  
   return ( 
     <View style={styles.container}>
       <View style={styles.rowContainer}>
