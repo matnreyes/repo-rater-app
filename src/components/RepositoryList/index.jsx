@@ -51,6 +51,17 @@ const repositories = [
     ratingAverage: 0,
     reviewCount: 0,
     ownerAvatarUrl: 'https://avatars3.githubusercontent.com/u/13142323?v=4'
+  },
+  {
+    id: 'mastermind',
+    fullName: 'matnreyres/mastermind',
+    description: 'Mastermind game for LinkedIn REACH apprenticeship',
+    language: 'JavaScript',
+    forksCount: 0,
+    stargazersCount: 2,
+    ratingAverage: 0,
+    reviewCount: 0,
+    ownerAvatarUrl: 'https://avatars.githubusercontent.com/u/62193154?s=400&u=28896455af15cd6e24a0b294476909e7ad9a0ffd&v=4'
   }
 ]
 

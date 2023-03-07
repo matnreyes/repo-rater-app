@@ -7,7 +7,12 @@ const styles = StyleSheet.create({
     color: theme.colors.textPrimary,
     fontSize: theme.fontSizes.body,
     fontFamily: theme.fonts.main,
-    fontWeight: theme.fontWeights.normal
+    fontWeight: theme.fontWeights.normal,
+    flex: 100,
+    flexWrap: 'wrap'
+  },
+  colorTextPrimary: {
+    color: theme.colors.textPrimary
   },
   colorTextSecondary: {
     color: theme.colors.textSecondary
@@ -20,16 +25,20 @@ const styles = StyleSheet.create({
   },
   fontWeightBold: {
     fontWeight: theme.fontWeights.bold
+  },
+  textCentered: {
+    textAlign: 'center'
   }
 })
 
-const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
+const Text = ({ color, fontSize, fontWeight, textAlign, style, ...props }) => {
   const textStyle = [
     styles.text,
+    color === 'textprimary' && styles.colorTextPrimary,
     color === 'textSecondary' && styles.colorTextSecondary,
-    color === 'primary' && styles.colorPrimary,
     fontSize === 'subheading' && styles.fontSizeSubheading,
     fontWeight === 'bold' && styles.fontWeightBold,
+    textAlign === 'centered' && styles.textCentered,
     style
   ]
 
