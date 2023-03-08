@@ -16,7 +16,7 @@ const theme = {
   fonts: {
     main: Platform.select({
       android: 'Roboto',
-      ios: 'Helvetica',
+      ios: 'Arial',
       default: 'System'
     })
   },
