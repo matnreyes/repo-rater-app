@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSizes.body,
     fontFamily: theme.fonts.main,
     fontWeight: theme.fontWeights.normal,
-    flex: 100,
     flexWrap: 'wrap'
   },
   colorTextPrimary: {
@@ -28,6 +27,9 @@ const styles = StyleSheet.create({
   },
   textCentered: {
     textAlign: 'center'
+  },
+  largeText: {
+    fontSize: 14
   }
 })
 
@@ -39,6 +41,7 @@ const Text = ({ color, fontSize, fontWeight, textAlign, style, ...props }) => {
     fontSize === 'subheading' && styles.fontSizeSubheading,
     fontWeight === 'bold' && styles.fontWeightBold,
     textAlign === 'centered' && styles.textCentered,
+    fontSize === 'large' && styles.largeText,
     style
   ]
 

@@ -6,7 +6,7 @@ import AppBarTab from './AppBarTab'
 const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight,
-    paddingBottom: 5,
+    paddingBottom: 15,
     paddingLeft: 20,
     backgroundColor: theme.colors.secondary
   }
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 const AppBar = () => {
   return (
     <View style={styles.container}>
-      <ScrollView horizontal>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <AppBarTab label="Repositories" path="/" />
         <AppBarTab label="Sign in" path="/signin" />
       </ScrollView>

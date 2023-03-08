@@ -20,6 +20,7 @@ const RepositoryItem = ({ repo }) => {
   const styles= {
     container: {
       backgroundColor: 'white',
+      padding: 10
     },
     avatar: {
       width: 55,
@@ -31,18 +32,19 @@ const RepositoryItem = ({ repo }) => {
       padding: 10,
     },
     rowContainer: {
-      margin: 10,
-      flexDirection: 'row',
+      flexDirection: 'row'
     },
     language: {
       backgroundColor: theme.colors.primary,
       color: 'white',
       alignSelf: 'flex-start',
-      paddingTop: 5,
-      paddingLeft: 5,
-      paddingRight: 5,
+      padding: 5,
       borderRadius: 6,
       overflow: 'hidden'
+    },
+    info: {
+      textAlign: 'center',
+      marginBottom: 10,
     }
   }
   
@@ -56,20 +58,20 @@ const RepositoryItem = ({ repo }) => {
           <Text style={styles.language}>{repo.language}</Text>
         </View>
       </View>
-      <View style={styles.rowContainer}>
-        <Text textAlign="centered">
+      <View style={[styles.rowContainer, {justifyContent: 'space-evenly'}]}>
+      <Text style={styles.info}>
           <Text fontWeight="bold">{stars}{'\n'}</Text>
           <Text>stars</Text>
         </Text>
-        <Text textAlign="centered">
+        <Text style={styles.info}>
           <Text fontWeight="bold">{forks}{'\n'}</Text>
           <Text>forks</Text>
         </Text>
-        <Text textAlign="centered">
+        <Text style={styles.info}>
         <Text fontWeight="bold">{reviews}{'\n'}</Text>
         <Text>reviews</Text>
         </Text>
-        <Text textAlign="centered">
+        <Text style={styles.info}>
           <Text fontWeight="bold">{repo.ratingAverage}{'\n'}</Text>
           <Text>rating</Text>
         </Text>
