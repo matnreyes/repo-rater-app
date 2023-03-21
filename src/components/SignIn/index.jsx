@@ -4,13 +4,20 @@ import FormInput from '../FormInput'
 import AppButton from '../AppButton'
 import { useNavigate } from 'react-router-native'
 import { View, StyleSheet } from 'react-native'
+import { useSignIn } from '../../hooks/useSignIn'
 
 const SignIn = () => {
   const { control, handleSubmit } = useForm()
+  const [signIn] = useSignIn()
   const navigate = useNavigate('/')
 
-  const login = (data) => {
-    console.log(data)
+  const onSubmit = async (data) => {
+    try {
+      const accessToken = await signIn(data)
+      console.log(accessToken)
+    } catch (e) {
+      console.log(e)
+    }
     navigate('/')
   }
 
@@ -37,7 +44,7 @@ const SignIn = () => {
     <View style={styles.loginContainer}>
       <FormInput name="username" placeholder="Username" control={control} rules={rules.username}/>
       <FormInput name="password" placeholder="Password" control={control} secureTextEntry rules={rules.password}/>
-      <AppButton onPress={handleSubmit(login)} text="sign in" type="submitLarge" style={styles.loginButton}/>
+      <AppButton onPress={handleSubmit(onSubmit)} text="sign in" type="submitLarge" style={styles.loginButton}/>
     </View>
   )
 }
