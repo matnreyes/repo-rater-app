@@ -49,29 +49,29 @@ const RepositoryItem = ({ repo }) => {
   }
   
   return ( 
-    <View style={styles.container}>
+    <View testID="repositoryItem" style={styles.container}>
       <View style={styles.rowContainer}>
         <Image style={styles.avatar} source={{uri: repo.ownerAvatarUrl}}/>
         <View style={styles.titleContainer}>
-          <Text color="textPrimary" fontWeight="bold">{repo.fullName}</Text>
-          <Text color="textPrimary">{repo.description}</Text>
-          <Text style={styles.language}>{repo.language}</Text>
+          <Text testID="name" color="textPrimary" fontWeight="bold">{repo.fullName}</Text>
+          <Text testID="description" color="textPrimary">{repo.description}</Text>
+          <Text testID="language" style={styles.language}>{repo.language}</Text>
         </View>
       </View>
       <View style={[styles.rowContainer, {justifyContent: 'space-evenly'}]}>
-      <Text style={styles.info}>
+        <Text testID="stars" style={styles.info}>
           <Text fontWeight="bold">{stars}{'\n'}</Text>
           <Text>stars</Text>
         </Text>
-        <Text style={styles.info}>
+        <Text testID="forks" style={styles.info}>
           <Text fontWeight="bold">{forks}{'\n'}</Text>
           <Text>forks</Text>
         </Text>
-        <Text style={styles.info}>
-        <Text fontWeight="bold">{reviews}{'\n'}</Text>
-        <Text>reviews</Text>
+        <Text testID="reviews" style={styles.info}>
+          <Text fontWeight="bold">{reviews}{'\n'}</Text>
+          <Text>reviews</Text>
         </Text>
-        <Text style={styles.info}>
+        <Text testID="rating" style={styles.info}>
           <Text fontWeight="bold">{repo.ratingAverage}{'\n'}</Text>
           <Text>rating</Text>
         </Text>
