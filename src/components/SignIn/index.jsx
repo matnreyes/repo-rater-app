@@ -4,6 +4,7 @@ import FormInput from '../FormInput'
 import AppButton from '../AppButton'
 import { useNavigate } from 'react-router-native'
 import { View, StyleSheet } from 'react-native'
+
 import { useSignIn } from '../../hooks/useSignIn'
 
 const SignIn = () => {
@@ -13,12 +14,11 @@ const SignIn = () => {
 
   const onSubmit = async (data) => {
     try {
-      const accessToken = await signIn(data)
-      console.log(accessToken)
+      await signIn(data)
+      navigate('/')
     } catch (e) {
       console.log(e)
     }
-    navigate('/')
   }
 
   const styles = StyleSheet.create({
