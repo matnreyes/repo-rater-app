@@ -7,27 +7,16 @@ import { View, StyleSheet } from 'react-native'
 
 import { useSignIn } from '../../hooks/useSignIn'
 
-const SignIn = () => {
+const styles = StyleSheet.create({
+  loginContainer: {
+    backgroundColor: 'white',
+    paddingTop: 10,
+    paddingBottom: 10
+  },
+})
+
+export const SignInContainer = ({ onSubmit }) => {
   const { control, handleSubmit } = useForm()
-  const [signIn] = useSignIn()
-  const navigate = useNavigate('/')
-
-  const onSubmit = async (data) => {
-    try {
-      await signIn(data)
-      navigate('/')
-    } catch (e) {
-      console.log(e)
-    }
-  }
-
-  const styles = StyleSheet.create({
-    loginContainer: {
-      backgroundColor: 'white',
-      paddingTop: 10,
-      paddingBottom: 10
-    },
-  })
 
   const rules = {
     username: {
@@ -46,6 +35,24 @@ const SignIn = () => {
       <FormInput name="password" placeholder="Password" control={control} secureTextEntry rules={rules.password}/>
       <AppButton onPress={handleSubmit(onSubmit)} text="sign in" type="submitLarge" style={styles.loginButton}/>
     </View>
+  )
+}
+
+const SignIn = () => {
+  const [signIn] = useSignIn()
+  const navigate = useNavigate()
+
+  const onSubmit = async (data) => {
+    try {
+      await signIn(data)
+      navigate('/')
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  return (
+    <SignInContainer onSubmit={onSubmit}/>
   )
 }
 
