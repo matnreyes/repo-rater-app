@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet } from 'react-native'
+import { TouchableOpacity, StyleSheet } from 'react-native'
 import Text from './Text'
 
 import theme from '../theme'
@@ -39,9 +39,9 @@ const AppButton = ({ onPress, text, type, style }) => {
   }
 
   return (
-    <Pressable onPress={onPress}>
+    <TouchableOpacity onPress={onPress}>
       <Text style={[styles.button, styleSwitch(), style]}>{text}</Text>
-    </Pressable>
+    </TouchableOpacity>
   )
 }
 

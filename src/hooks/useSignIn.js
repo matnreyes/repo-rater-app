@@ -10,8 +10,8 @@ export const useSignIn = () => {
 
   const signIn = async ({ username, password }) => {
     const { data: { authenticate } } = await mutate({ variables: { username, password } })
-    authStorage.setAccessToken(authenticate.accessToken)
-    client.resetStore()
+    await authStorage.setAccessToken(authenticate.accessToken)
+    await client.resetStore()
   }
 
   return [signIn, result]
