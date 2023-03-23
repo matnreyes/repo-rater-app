@@ -15,7 +15,7 @@ const styles= {
     marginBottom: 40,
   },
   titleContainer: {
-    padding: 10,
+    margin: 10
   },
   rowContainer: {
     flexDirection: 'row'

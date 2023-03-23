@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSizes.body,
     fontFamily: theme.fonts.main,
     fontWeight: theme.fontWeights.normal,
-    flexWrap: 'wrap'
   },
   colorTextPrimary: {
     color: theme.colors.textPrimary

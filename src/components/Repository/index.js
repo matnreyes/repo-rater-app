@@ -6,12 +6,6 @@ import theme from "../../theme";
 import Text from "../Text";
 
 const style = StyleSheet.create({
-  list: {
-    height: 10,
-  },
-  separator: {
-    height: 10
-  },
   rating: {
     color: theme.colors.primary,
     borderRadius: 20,
@@ -25,7 +19,8 @@ const style = StyleSheet.create({
   topContainer: {
     backgroundColor: 'white',
     flexDirection: 'row',
-    padding: 10
+    padding: 10,
+    marginVertical: 5
   },
   rightContainer: {
     margin: 10
@@ -60,9 +55,8 @@ const Repository = ({ route }) => {
       renderItem={({ item }) => <ReviewItem review={item.node} />}
       keyExtractor={({ node }) => node.id}
       ListHeaderComponent={() => <RepositoryItem repo={repository} />}
-      ItemSeparatorComponent={() => <View style={style.separator} />}
       />
   </>
   }
 
-export default Repository
+export default Repository 

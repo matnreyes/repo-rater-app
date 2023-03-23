@@ -1,5 +1,3 @@
-// import { StyleSheet } from 'react-native'
-
 import RepositoryList from './RepositoryList'
 import SignIn from './SignIn'
 import theme from '../theme'
@@ -10,34 +8,28 @@ import { Button } from 'react-native'
 import { useSignOut } from '../hooks/useSignOut'
 import Repository from './Repository'
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flexGrow: 1,
-//     flexShrink: 1,
-//     backgroundColor: theme.colors.background
-//   }
-// })
-
 const Stack = createNativeStackNavigator()
 
 const Main = () => {
   const [user, signOut] = useSignOut()
   return (
-    <Stack.Navigator>
-      <Stack.Screen 
-        name="Repositories" 
-        component={RepositoryList}
-        options={({ navigation}) => ({
-          headerRight: () => (
-            <>
-              {!user
-                ? <Button title="Sign in" colors={theme.colors.textPrimary} onPress={() => navigation.navigate('Sign in')}/>
-                : <Button title="Sign out" colors={theme.colors.textPrimary} onPress={() => signOut()}/>
-              }
-            </>
-          )
-        })}
-      />
+    <Stack.Navigator
+      screenOptions={({ navigation }) => ({
+        headerStyle: {
+          backgroundColor: theme.colors.secondary
+        },
+        headerTintColor: 'white',
+        headerRight: () => (
+          <>
+            {!user
+              ? <Button title="Sign in"  onPress={() => navigation.navigate('Sign in')}/>
+              : <Button title="Sign out" onPress={() => signOut()}/>
+            }
+          </>
+        )
+      })}
+    >
+      <Stack.Screen name="Repositories" component={RepositoryList} />
       <Stack.Screen name="Sign in" component={SignIn} />
       <Stack.Screen name="Repository" component={Repository} />
     </Stack.Navigator>
