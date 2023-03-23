@@ -7,7 +7,9 @@ export const useSignOut = () => {
   const [user, setUser] = useState(null)
   const authStorage = useAuthStorage()
   const client = useApolloClient()
-  const {data, loading} = useQuery(USER_INFO)
+  const {data, loading} = useQuery(USER_INFO, {
+    fetchPolicy: 'cache-first'
+  })
 
   useEffect(() => {
     if (!loading) {

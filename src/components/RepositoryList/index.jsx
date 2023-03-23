@@ -1,4 +1,5 @@
 import { FlatList, View, StyleSheet } from 'react-native'
+import { Link } from 'react-router-native'
 import RepositoryItem from './RepositoryItem'
 import useRepositories from '../../hooks/useRepositories'
 
@@ -20,7 +21,10 @@ export const RepositoryListContainer = ({ repositories }) => {
     <FlatList 
       data={repositoryNodes}
       ItemSeparatorComponent={ItemSeparator}
-      renderItem={(repo, index) => <RepositoryItem repo={repo.item} key={index} />
+      renderItem={(repo) => 
+        <Link key={repo.item.id} to={`/repo/${repo.item.id}`}>
+          <RepositoryItem repo={repo.item} /> 
+        </Link>
       }
     />
   )

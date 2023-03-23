@@ -1,8 +1,10 @@
-import { View, Image } from 'react-native'
+import { View, Image, Linking } from 'react-native'
 import Text from '../Text'
 import theme from '../../theme'
+import AppButton from '../AppButton'
+import useRepository from '../../hooks/useRepository'
 
-const RepositoryItem = ({ repo }) => {
+const RepoItemContainer = ({ repo }) => {
   const shortenNum = (number) => {
     if (number > 999999) {
         return `${(number / 1000000).toPrecision(3)}m` 
@@ -40,7 +42,8 @@ const RepositoryItem = ({ repo }) => {
       alignSelf: 'flex-start',
       padding: 5,
       borderRadius: 6,
-      overflow: 'hidden'
+      overflow: 'hidden',
+      marginTop: 5
     },
     info: {
       textAlign: 'center',
@@ -76,8 +79,19 @@ const RepositoryItem = ({ repo }) => {
           <Text>rating</Text>
         </Text>
       </View>
+      {repo.url && <AppButton type="submitLarge" text="Open in GitHub" onPress={() => Linking.openURL(repo.url)} style={styles.shadowProp}/>}
     </View>
   )
+}
+
+const RepositoryItem = ({ repo }) => {
+  if (repo) {
+    return <RepoItemContainer repo={repo} />
+  }
+  
+  const repository = useRepository()
+
+  return repository && <RepoItemContainer repo={repository}/>
 }
 
 export default RepositoryItem
