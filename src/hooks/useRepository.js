@@ -1,12 +1,11 @@
 import { useQuery } from '@apollo/client'
 import { EXPANDED_REPO } from '../graphql/queries'
-import { useParams } from 'react-router-native'
 
 import { useEffect, useState } from 'react'
 
-const useRepository = () => {
+const useRepository = ({ params }) => {
   const [repo, setRepo] = useState()
-  const { id } = useParams()
+  const { id } = params
 
   const { data, loading } = useQuery(EXPANDED_REPO, {
     variables: { id },

@@ -84,12 +84,11 @@ const RepoItemContainer = ({ repo }) => {
   )
 }
 
-const RepositoryItem = ({ repo }) => {
+const RepositoryItem = ({ repo, route }) => {
   if (repo) {
     return <RepoItemContainer repo={repo} />
   }
-  
-  const repository = useRepository()
+  const repository = useRepository(route)
 
   return repository && <RepoItemContainer repo={repository}/>
 }

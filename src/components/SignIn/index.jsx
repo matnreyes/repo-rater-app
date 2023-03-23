@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form'
 
 import FormInput from '../FormInput'
 import AppButton from '../AppButton'
-import { useNavigate } from 'react-router-native'
 import { View, StyleSheet } from 'react-native'
 
 import { useSignIn } from '../../hooks/useSignIn'
@@ -38,14 +37,13 @@ export const SignInContainer = ({ onSubmit }) => {
   )
 }
 
-const SignIn = () => {
+const SignIn = ({ navigation }) => {
   const [signIn] = useSignIn()
-  const navigate = useNavigate()
 
   const onSubmit = async (data) => {
     try {
       await signIn(data)
-      navigate('/')
+      navigation.navigate('Repositories')
     } catch (e) {
       console.log(e)
     }

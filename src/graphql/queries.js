@@ -40,6 +40,20 @@ export const EXPANDED_REPO = gql`
     repository(id: $id) {
       ...RepoInfo
       url
+      reviews {
+        edges {
+          node {
+            id
+            text
+            rating
+            createdAt
+            user {
+              id
+              username
+            }
+          }
+        }
+      }
     }
   }
   ${REPO_INFO}
