@@ -16,14 +16,15 @@ const style = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  topContainer: {
+  reviewCard: {
     backgroundColor: 'white',
     flexDirection: 'row',
     padding: 10,
+    paddingBottom: 15,
     marginVertical: 5
   },
   rightContainer: {
-    margin: 10
+    marginHorizontal: 10
   },
   descriptionText: {
     marginRight: 10
@@ -33,9 +34,9 @@ const style = StyleSheet.create({
 const ReviewItem = ({ review }) => {
   const date = format(new Date(review.createdAt), 'MM.dd.yyyy')
   return (
-    <View style={style.topContainer}>
+    <View style={style.reviewCard}>
       <View style={style.rating}>
-        <Text style={{color: theme.colors.primary}}fontWeight="bold">{review.rating}</Text>
+        <Text style={{color: theme.colors.primary, fontSize: 18 }}fontWeight="bold">{review.rating}</Text>
       </View>
       <View style={style.rightContainer}>
         <Text color="textPrimary" fontWeight="bold" fontSize="subheading">{review.user.username}</Text>
