@@ -40,7 +40,7 @@ const RepoItemContainer = ({ repo }) => (
     <View style={styles.rowContainer}>
       <Image style={styles.avatar} source={{uri: repo.ownerAvatarUrl}}/>
       <View style={styles.titleContainer}>
-        <Text testID="name" color="textPrimary" fontWeight="bold">{repo.fullName}</Text>
+        <Text testID="name" color="textPrimary" fontWeight="bold" fontSize="subheading">{repo.fullName}</Text>
         <Text testID="description" color="textPrimary">{repo.description}</Text>
         <Text testID="language" style={styles.language}>{repo.language}</Text>
       </View>
