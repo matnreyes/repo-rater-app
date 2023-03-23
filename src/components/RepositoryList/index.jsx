@@ -1,5 +1,4 @@
 import { FlatList, View, StyleSheet, Pressable } from 'react-native'
-import { Link } from 'react-router-native'
 import RepositoryItem from './RepositoryItem'
 import useRepositories from '../../hooks/useRepositories'
 

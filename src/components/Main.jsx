@@ -1,23 +1,22 @@
-import { StyleSheet } from 'react-native'
+// import { StyleSheet } from 'react-native'
 
 import RepositoryList from './RepositoryList'
 import SignIn from './SignIn'
-import AppBar from './AppBar'
-import RepositoryItem from './RepositoryList/RepositoryItem'
 import theme from '../theme'
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Button } from 'react-native'
 
 import { useSignOut } from '../hooks/useSignOut'
+import Repository from './Repository'
 
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    flexShrink: 1,
-    backgroundColor: theme.colors.background
-  }
-})
+// const styles = StyleSheet.create({
+//   container: {
+//     flexGrow: 1,
+//     flexShrink: 1,
+//     backgroundColor: theme.colors.background
+//   }
+// })
 
 const Stack = createNativeStackNavigator()
 
@@ -40,7 +39,7 @@ const Main = () => {
         })}
       />
       <Stack.Screen name="Sign in" component={SignIn} />
-      <Stack.Screen name="Repository" component={RepositoryItem} />
+      <Stack.Screen name="Repository" component={Repository} />
     </Stack.Navigator>
   )
 }
