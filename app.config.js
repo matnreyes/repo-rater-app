@@ -19,19 +19,24 @@ export default {
     "**/*"
   ],
   "ios": {
-    "supportsTablet": true
+    "supportsTablet": true,
+    "bundleIdentifier": "com.matnreyes.RepoRater",
   },
   "android": {
     "adaptiveIcon": {
       "foregroundImage": "./assets/adaptive-icon.png",
       "backgroundColor": "#FFFFFF"
-    }
+    },
+    "package": "com.matnreyes.reporater"
   },
   "web": {
     "favicon": "./assets/favicon.png"
   },
   extra: {
     env: process.env.ENV,
-    APOLLO_URI: process.env.APOLLO_URI
+    APOLLO_URI: process.env.APOLLO_URI,
+    eas: {
+      projectId: process.env.projectId
+    }
   }
 }
