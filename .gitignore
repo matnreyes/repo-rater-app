@@ -113,6 +113,7 @@ App.js
 # iOS / CocoaPods
 /packages/react-native/template/ios/build/
 /packages/react-native/template/ios/Pods/
+/ios/Pods
 /packages/react-native/template/ios/Podfile.lock
 /packages/rn-tester/Gemfile.lock
 
