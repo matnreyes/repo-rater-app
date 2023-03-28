@@ -73,6 +73,7 @@ node_modules
 .nvm
 package-lock.json
 .env
+App.js
 
 # OS X
 .DS_Store
