@@ -7,7 +7,7 @@ import { useSignOut } from '../hooks/useSignOut'
 import ReviewForm from './ReviewForm'
 import AccountPage from './AccountPage'
 import RepoTab from './RepoTab'
-import Ionicons from '@expo/vector-icons/Ionicons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
 

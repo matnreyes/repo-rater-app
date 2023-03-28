@@ -1,0 +1,13 @@
+current directory: /Users/matnreyes/Development/rncli_reporater/reporater/vendor/bundle/ruby/2.7.0/gems/json-2.6.3/ext/json
+/Users/matnreyes/.rvm/rubies/ruby-2.7.6/bin/ruby -I /Users/matnreyes/.rvm/rubies/ruby-2.7.6/lib/ruby/2.7.0 -r ./siteconf20230328-47272-1mywox8.rb extconf.rb
+creating Makefile
+
+current directory: /Users/matnreyes/Development/rncli_reporater/reporater/vendor/bundle/ruby/2.7.0/gems/json-2.6.3/ext/json
+make "DESTDIR=" clean
+
+current directory: /Users/matnreyes/Development/rncli_reporater/reporater/vendor/bundle/ruby/2.7.0/gems/json-2.6.3/ext/json
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+current directory: /Users/matnreyes/Development/rncli_reporater/reporater/vendor/bundle/ruby/2.7.0/gems/json-2.6.3/ext/json
+make "DESTDIR=" install

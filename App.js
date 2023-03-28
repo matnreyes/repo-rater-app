@@ -9,16 +9,14 @@ import { NavigationContainer } from '@react-navigation/native'
 const authStorage = new AuthStorage()
 const apolloClient = createApolloClient(authStorage)
 
-const App = () => {
-  return (
-    <NavigationContainer>
-      <ApolloProvider client={apolloClient}>
-        <AuthStorageContext.Provider value={authStorage}>
-          <Main />
-        </AuthStorageContext.Provider>
-      </ApolloProvider>
-    </NavigationContainer>
-  )
-}
+const App = () => (
+  <NavigationContainer>
+    <ApolloProvider client={apolloClient}>
+      <AuthStorageContext.Provider value={authStorage}>
+        <Main />
+      </AuthStorageContext.Provider>
+    </ApolloProvider>
+  </NavigationContainer>
+)
 
 export default App
