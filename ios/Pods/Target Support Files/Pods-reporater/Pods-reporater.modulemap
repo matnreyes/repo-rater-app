@@ -1,6 +1,0 @@
-module Pods_reporater {
-  umbrella header "Pods-reporater-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -1,6 +1,0 @@
-module Pods_reporater_reporaterTests {
-  umbrella header "Pods-reporater-reporaterTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
