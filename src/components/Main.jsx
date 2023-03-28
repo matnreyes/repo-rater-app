@@ -7,9 +7,9 @@ import { useSignOut } from '../hooks/useSignOut'
 import ReviewForm from './ReviewForm'
 import AccountPage from './AccountPage'
 import RepoTab from './RepoTab'
-import Ionicons from 'react-native-vector-icons/Ionicons'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
+import { SFSymbol } from 'react-native-sfsymbols'
 
 const MainStack = createBottomTabNavigator()
 const RootStack = createStackNavigator()
@@ -25,17 +25,17 @@ const header = ({ route }) => ({
 
     switch(route.name) {
       case "Home":
-        iconName = focused ? 'md-home' : 'md-home-outline'
+        iconName = focused ? 'house.fill' : 'house'
         break
       case "Review form":
-        iconName = focused ? 'add-circle' : 'add-circle-outline'
+        iconName = focused ? 'square.and.pencil.circle.fill' : 'square.and.pencil.circle'
         break
       default:
-        iconName = focused ? 'person-circle' : 'person-circle-outline'
+        iconName = focused ? 'person.fill' : 'person'
         break
     }
 
-    return <Ionicons name={iconName} size={size} color={color}/>
+    return <SFSymbol name={iconName} size={size} color={color}/>
   }
 })
 

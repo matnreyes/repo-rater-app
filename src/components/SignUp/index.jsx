@@ -1,9 +1,16 @@
 import { useForm } from 'react-hook-form'
-import { View } from 'react-native'
+import { View, StyleSheet  } from 'react-native'
 import Text from '../Text'
 import FormInput from '../FormInput'
 import AppButton from '../AppButton'
 import useCreateUser from '../../hooks/useCreateUser'
+
+const style = StyleSheet.create({
+  signupContainer: {
+    backgroundColor: 'white',
+    paddingTop: 10
+  }
+})
 
 const SignUp = ({ navigation }) => {
   const { control, handleSubmit, watch } = useForm()
@@ -30,8 +37,7 @@ const SignUp = ({ navigation }) => {
 
   const submit = async (data) => {
     try {
-      const user = await signUp(data)
-      console.log(user)
+      await signUp(data)
       navigation.navigate('Home')
     } catch (e) {
       console.log(e)
@@ -39,8 +45,7 @@ const SignUp = ({ navigation }) => {
   }
 
   return (
-    <View>
-      <Text>Sign up to RepoRater have access to great features!</Text>
+    <View style={style.signupContainer}>
       <FormInput name="username" placeholder="Username" control={control} rules={rules.username} />
       <FormInput name="password" placeholder="Password" control={control} rules={rules.password} secureTextEntry />
       <FormInput name="passwordConfirm" placeholder="Re-enter your password" control={control} rules={rules.confirmPassword} secureTextEntry />
