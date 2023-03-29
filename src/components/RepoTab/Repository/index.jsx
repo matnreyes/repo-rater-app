@@ -3,7 +3,7 @@ import useRepository from '../../../hooks/useRepository'
 import { FlatList, View, StyleSheet } from 'react-native'
 import format from 'date-fns/format'
 import theme from "../../../theme";
-import Text from "../../Text";
+import Text from "../../Text"
 
 const style = StyleSheet.create({
   rating: {
@@ -24,10 +24,8 @@ const style = StyleSheet.create({
     marginVertical: 5
   },
   rightContainer: {
-    marginHorizontal: 10
-  },
-  descriptionText: {
-    marginRight: 10
+    marginHorizontal: 10,
+    flex: 1
   }
 })
 

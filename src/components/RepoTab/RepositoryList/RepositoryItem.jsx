@@ -15,7 +15,9 @@ const styles= {
     marginBottom: 40,
   },
   titleContainer: {
-    margin: 10
+    marginLeft: 10,
+    marginBottom: 10,
+    flex: 1,
   },
   rowContainer: {
     flexDirection: 'row'
