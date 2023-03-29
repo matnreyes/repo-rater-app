@@ -1,5 +1,6 @@
 import { ActionSheetIOS, TouchableOpacity, StyleSheet } from 'react-native'
 import { SFSymbol } from 'react-native-sfsymbols'
+// import useRepositories from '../hooks/useRepositories'
 import theme from '../theme'
 
 const styles = StyleSheet.create({
@@ -12,6 +13,7 @@ const styles = StyleSheet.create({
 })
 
 const SortButton = () => {
+  // const [repositories, refetchRepos] = useRepositories()
   const onPress = () => (
     ActionSheetIOS.showActionSheetWithOptions(
       {
@@ -23,10 +25,29 @@ const SortButton = () => {
         ],
         cancelButtonIndex: 3,
       },
-      buttonIndex => {
-        if (buttonIndex === 1) {
-          console.log(buttonIndex)
+      async (buttonIndex) => {
+        const repoSort = {
+          orderType: '',
+          direction: ''
         }
+        switch (buttonIndex) {
+          case 0: 
+            repoSort.orderType = 'CREATED_AT'
+            repoSort.direction = 'DESC'
+            break
+          case 1:
+            repoSort.orderType = 'RATING_AVERAGE'
+            repoSort.direction = 'DESC'
+            break
+          case 2:
+            repoSort.orderType = 'RATING_AVERAGE'
+            repoSort.direction = 'ASC'
+            break
+          default:
+            break
+        }
+        
+        // await refetchRepos(repoSort)
       }
     )
   )

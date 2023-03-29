@@ -15,8 +15,8 @@ const REPO_INFO = gql`
 `
 
 export const ALL_REPOSITORIES = gql`
-  query {
-    repositories {
+  query Repositories($orderDirection: OrderDirection, $orderBy: AllRepositoriesOrderBy) {
+    repositories(orderBy: $orderBy, orderDirection: $orderDirection) {
       edges {
         node {
           ...RepoInfo
@@ -26,6 +26,7 @@ export const ALL_REPOSITORIES = gql`
   }
   ${REPO_INFO}
 `
+
 export const USER_INFO = gql`
   query {
     me {

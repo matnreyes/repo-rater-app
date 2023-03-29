@@ -20,9 +20,9 @@ const ItemSeparator = () => <View style={styles.separator} />
 
 export const RepositoryListContainer = ({ repositories, navigation }) => {
 
-  const repositoryNodes = repositories
+  const repositoryNodes = repositories.edges
   ? repositories.edges.map(edge => edge.node)
-  : []
+  : repositories
 
   return (
     <FlatList
@@ -40,7 +40,7 @@ export const RepositoryListContainer = ({ repositories, navigation }) => {
 }
 
 const RepositoryList = ({navigation}) => {
-  const { repositories } = useRepositories()
+  const [ repositories ] = useRepositories()
 
   return <RepositoryListContainer repositories={repositories} navigation={navigation}/>
 }
