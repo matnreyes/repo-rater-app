@@ -58,3 +58,16 @@ export const EXPANDED_REPO = gql`
   }
   ${REPO_INFO}
 `
+
+export const SORTED_REPOS = gql`
+  query ($orderBy: AllRepositoriesOrderBy) {
+    repositories {
+      edges {
+        node {
+          ...RepoInfo
+        }
+      }
+    }
+  }
+  ${REPO_INFO}
+`
