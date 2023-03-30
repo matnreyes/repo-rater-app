@@ -1,6 +1,6 @@
 import { ActionSheetIOS, TouchableOpacity, StyleSheet } from 'react-native'
 import { SFSymbol } from 'react-native-sfsymbols'
-// import useRepositories from '../hooks/useRepositories'
+import { useNavigation } from '@react-navigation/native'
 import theme from '../theme'
 
 const styles = StyleSheet.create({
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 })
 
 const SortButton = () => {
-  // const [repositories, refetchRepos] = useRepositories()
+  const navigation = useNavigation()
   const onPress = () => (
     ActionSheetIOS.showActionSheetWithOptions(
       {
@@ -25,29 +25,25 @@ const SortButton = () => {
         ],
         cancelButtonIndex: 3,
       },
-      async (buttonIndex) => {
+      (buttonIndex) => {
+        if (buttonIndex === 3) {
+          return
+        }
+
         const repoSort = {
-          orderType: '',
-          direction: ''
+          orderBy: 'CREATED_AT',
+          orderDirection: 'DESC'
         }
-        switch (buttonIndex) {
-          case 0: 
-            repoSort.orderType = 'CREATED_AT'
-            repoSort.direction = 'DESC'
-            break
-          case 1:
-            repoSort.orderType = 'RATING_AVERAGE'
-            repoSort.direction = 'DESC'
-            break
-          case 2:
-            repoSort.orderType = 'RATING_AVERAGE'
-            repoSort.direction = 'ASC'
-            break
-          default:
-            break
+
+        if (buttonIndex === 1) {
+          repoSort.orderBy = 'RATING_AVERAGE'
+          repoSort.orderDirection = 'DESC'
+        } else if (buttonIndex === 2) {
+          repoSort.orderBy = 'RATING_AVERAGE'
+            repoSort.orderDirection = 'ASC'
         }
-        
-        // await refetchRepos(repoSort)
+
+        navigation.navigate('Repositories', { ...repoSort })
       }
     )
   )

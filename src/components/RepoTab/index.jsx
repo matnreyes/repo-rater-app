@@ -17,7 +17,7 @@ const header = {
 const RepoTab = () => {
   return (
     <Stack.Navigator screenOptions={() => header} >
-        <Stack.Screen name="Repositories" component={RepositoryList} options={{ headerRight: () => <SortButton /> }}/>
+        <Stack.Screen name="Repositories" component={RepositoryList} options={{ headerRight: () => <SortButton /> }} />
         <Stack.Screen name="Repository" component={Repository} />
     </Stack.Navigator>
   )

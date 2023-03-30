@@ -39,10 +39,13 @@ export const RepositoryListContainer = ({ repositories, navigation }) => {
   )
 }
 
-const RepositoryList = ({navigation}) => {
-  const [ repositories ] = useRepositories()
+const RepositoryList = ({navigation, route}) => {
+  const { orderBy } = route.params ? route.params : ''
+  const { orderDirection } = route.params ? route.params : ''
 
-  return <RepositoryListContainer repositories={repositories} navigation={navigation}/>
+  const { repositories } = useRepositories(orderBy, orderDirection)
+
+  return <RepositoryListContainer repositories={repositories ? repositories : []} navigation={navigation}/>
 }
 
 export default RepositoryList
