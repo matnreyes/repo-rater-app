@@ -1,6 +1,9 @@
-import { FlatList, View, StyleSheet, Pressable } from 'react-native'
+import { FlatList, View, StyleSheet, TouchableOpacity } from 'react-native'
 import RepositoryItem from './RepositoryItem'
 import useRepositories from '../../../hooks/useRepositories'
+import SearchBar from '../../SearchBar'
+import { useState } from 'react'
+import { useDebounce } from 'use-debounce'
 
 const styles = StyleSheet.create({
   separator: {
@@ -29,23 +32,31 @@ export const RepositoryListContainer = ({ repositories, navigation }) => {
       data={repositoryNodes}
       ItemSeparatorComponent={ItemSeparator}
       renderItem={(repo) => 
-        <Pressable key={repo.item.id} onPress={() => navigation.navigate('Repository', {
+        <TouchableOpacity key={repo.item.id} onPress={() => navigation.navigate('Repository', {
           id: repo.item.id
         })}>
           <RepositoryItem repo={repo.item} /> 
-        </Pressable >
+        </TouchableOpacity >
       }
     />
   )
 }
 
 const RepositoryList = ({navigation, route}) => {
-  const { orderBy } = route.params ? route.params : ''
-  const { orderDirection } = route.params ? route.params : ''
+  const [search, setSearch] = useState('')
+  const [searchValue] = useDebounce(search, 500)
+  const { orderBy } = route.params ? route.params : 'CREATE_AT'
+  const { orderDirection } = route.params ? route.params : 'DESC'
 
-  const { repositories } = useRepositories(orderBy, orderDirection)
+  const { repositories } = useRepositories(orderBy, orderDirection, searchValue)
 
-  return <RepositoryListContainer repositories={repositories ? repositories : []} navigation={navigation}/>
+  return (
+    <>
+      <SearchBar value={search} setSearch={setSearch} />
+      <RepositoryListContainer repositories={repositories ? repositories : []} navigation={navigation}/>
+    </>
+
+  )
 }
 
 export default RepositoryList
