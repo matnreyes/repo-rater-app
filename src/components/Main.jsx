@@ -28,7 +28,7 @@ const header = ({ route }) => ({
         iconName = focused ? 'house.fill' : 'house'
         break
       case "Review form":
-        iconName = focused ? 'square.and.pencil.circle.fill' : 'square.and.pencil.circle'
+        iconName = 'square.and.pencil'
         break
       default:
         iconName = focused ? 'person.fill' : 'person'

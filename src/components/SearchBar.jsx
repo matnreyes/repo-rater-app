@@ -1,6 +1,5 @@
-import { TextInput, StyleSheet, View, Pressable, Keyboard, TouchableOpacity, Dimensions } from 'react-native'
+import { TextInput, StyleSheet, View, Keyboard, TouchableOpacity } from 'react-native'
 import { SFSymbol } from 'react-native-sfsymbols'
-import { useState } from 'react'
 
 const SearchBar = ({ value, setSearch }) => {
   const styles = StyleSheet.create({
