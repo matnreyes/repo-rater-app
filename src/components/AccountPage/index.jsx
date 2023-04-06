@@ -1,24 +1,25 @@
-import { View, StyleSheet } from 'react-native'
-import { useSignOut } from '../../hooks/useSignOut'
+import { View, StyleSheet, FlatList } from 'react-native'
+import useUser from '../../hooks/useUser'
 import Text from '../Text'
 import AppButton from '../AppButton'
-// import { Entypo } from 'react-native-vector-icons/vector-icons'
-import theme from '../../theme'
+import ReviewCard from './ReviewCard'
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   signupContainer: {
     backgroundColor: 'white',
     alignItems: 'center',
     width: '100%',
     height: '100%',
     justifyContent: 'center'
+  },
+  separator: {
+    height:10
   }
 })
 
 const StartUp = ({ navigation }) => {
   return (
-    <View style={style.signupContainer}>
-      {/* <Entypo size={'200'} name="github" color={theme.colors.secondary}/> */}
+    <View style={styles.signupContainer}>
       <Text>Gain access to great features by signing into RepoRater. </Text>
       <AppButton type="submitLarge" text="Sign into your RepoRater account" onPress={() => navigation.navigate('Sign In')}/>
       <AppButton type="submitLarge" text="Create a RepoRater account" onPress={() => navigation.navigate('Sign up')}/>
@@ -26,13 +27,26 @@ const StartUp = ({ navigation }) => {
   )
 }
 
+const ItemSeparator = () => <View style={styles.separator} />
+
+const ReviewList = ({ reviews }) => {
+  const reviewNodes = reviews
+    ? reviews.edges.map(edge => edge.node)
+    : []
+
+  return (
+    <FlatList
+      data={reviewNodes}
+      ItemSeparatorComponent={ItemSeparator}
+      renderItem={(review) => <ReviewCard review={review.item}/>}
+    />
+  )
+}
+
 const AccountPage = ({ navigation }) => {
-  const [user, signOut] = useSignOut()
+  const user = useUser(true)
   return user ? (
-      <View>
-        <Text>{user.username}</Text>
-        <AppButton type="submitLarge" text="Sign out" onPress={() => signOut()}/>
-      </View>
+    <ReviewList reviews={user.reviews} />
   )
   : <StartUp navigation={navigation}/>
 }

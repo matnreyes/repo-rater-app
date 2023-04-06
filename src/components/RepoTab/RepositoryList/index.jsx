@@ -45,7 +45,7 @@ export const RepositoryListContainer = ({ repositories, navigation }) => {
 const RepositoryList = ({navigation, route}) => {
   const [search, setSearch] = useState('')
   const [searchValue] = useDebounce(search, 500)
-  const { orderBy } = route.params ? route.params : 'CREATE_AT'
+  const { orderBy } = route.params ? route.params : 'CREATED_AT'
   const { orderDirection } = route.params ? route.params : 'DESC'
 
   const { repositories } = useRepositories(orderBy, orderDirection, searchValue)

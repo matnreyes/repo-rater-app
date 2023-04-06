@@ -28,10 +28,24 @@ export const ALL_REPOSITORIES = gql`
 `
 
 export const USER_INFO = gql`
-  query {
+  query UserInfo ($includeReviews: Boolean = false) {
     me {
-      id
       username
+      id
+      reviews @include(if: $includeReviews) {
+        edges {
+          node {
+            text
+            repositoryId
+            repository {
+              fullName
+            }
+            rating
+            createdAt
+            id
+          }
+        }
+      }
     }
   }
 `

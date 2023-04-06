@@ -34,12 +34,12 @@ const ReviewItem = ({ review }) => {
   return (
     <View style={style.reviewCard}>
       <View style={style.rating}>
-        <Text style={{color: theme.colors.primary, fontSize: 18 }}fontWeight="bold">{review.rating}</Text>
+        <Text style={{color: theme.colors.primary, fontSize: 18 }} fontWeight="bold">{review.rating}</Text>
       </View>
       <View style={style.rightContainer}>
         <Text color="textPrimary" fontWeight="bold" fontSize="subheading">{review.user.username}</Text>
         <Text style={{ color: theme.colors.secondary, marginBottom: 2 }}>{date}</Text>
-        <Text style={style.descriptionText} >{review.text}</Text>
+        <Text>{review.text}</Text>
       </View>
     </View>
   )
@@ -47,15 +47,16 @@ const ReviewItem = ({ review }) => {
 
 const Repository = ({ route }) => {
   const repository = useRepository(route)
-  return repository && 
-  <>
+  return repository.fullName ?
     <FlatList 
       data={repository.reviews.edges}
       renderItem={({ item }) => <ReviewItem review={item.node} />}
       keyExtractor={({ node }) => node.id}
       ListHeaderComponent={() => <RepositoryItem repo={repository} />}
       />
-  </>
+    : <>
+      <Text>loading...</Text>
+    </>
   }
 
 export default Repository 

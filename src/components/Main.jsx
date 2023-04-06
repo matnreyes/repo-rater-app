@@ -2,14 +2,16 @@ import theme from '../theme'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createStackNavigator } from '@react-navigation/stack'
+import { Button } from 'react-native'
 
-import { useSignOut } from '../hooks/useSignOut'
+import useUser from '../hooks/useUser'
 import ReviewForm from './ReviewForm'
 import AccountPage from './AccountPage'
 import RepoTab from './RepoTab'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
 import { SFSymbol } from 'react-native-sfsymbols'
+import { useSignOut } from '../hooks/useSignOut'
 
 const MainStack = createBottomTabNavigator()
 const RootStack = createStackNavigator()
@@ -40,12 +42,13 @@ const header = ({ route }) => ({
 })
 
 const MainApp = () => {
-  const [user] = useSignOut()
+  const user = useUser()
+  const signOut = useSignOut()
   return (
     <MainStack.Navigator screenOptions={header}>
       <MainStack.Screen name="Home" component={RepoTab} options={{ headerShown: false }}/>
-      <MainStack.Screen name="Review form" component={!user ? AccountPage : ReviewForm} options={ { title: 'Write a review' } }/>
-      <MainStack.Screen name="Account" component={AccountPage} />
+      <MainStack.Screen name="Review form" component={user ? ReviewForm : AccountPage} options={ { title: 'Write a review' } }/>
+      <MainStack.Screen name="Account" component={AccountPage} options={ { title: user ? user.username: 'Account', headerRight: () => user && <Button onPress={() => signOut()} title="Sign out"/> } } />
     </MainStack.Navigator>
   )
 

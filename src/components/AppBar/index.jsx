@@ -4,6 +4,7 @@ import theme from '../../theme'
 import AppBarTab from './AppBarTab'
 
 import { useSignOut } from '../../hooks/useSignOut'
+import useUser from '../../hook/useUser'
 
 const styles = StyleSheet.create({
   container: {
@@ -13,7 +14,8 @@ const styles = StyleSheet.create({
 })
 
 const AppBar = () => {
-  const [user, signOut] = useSignOut()
+  const user = useUser()
+  const signOut = useSignOut()
 
   return (
     <View style={styles.container}>
