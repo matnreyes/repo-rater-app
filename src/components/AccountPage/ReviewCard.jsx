@@ -2,6 +2,8 @@ import { StyleSheet, View } from 'react-native'
 import Text from '../Text'
 import { format } from 'date-fns'
 import theme from '../../theme'
+import AppButton from '../AppButton'
+import useDeleteReview from '../../hooks/useDeleteReview'
 
 const styles = StyleSheet.create({
   rating: {
@@ -16,28 +18,44 @@ const styles = StyleSheet.create({
   },
   reviewCard: {
     backgroundColor: 'white',
-    flexDirection: 'row',
+    flowDirection: 'column',
     padding: 10,
     paddingBottom: 15,
-    marginVertical: 5
+    marginVertical: 5,
   },
   rightContainer: {
     marginHorizontal: 10,
     flex: 1
+  },
+  actionButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   }
 })
 
 const ReviewCard = ({ review }) => {
+  const deleteReview = useDeleteReview()
   const date = format(new Date(review.createdAt), 'MM.dd.yyyy')
+
+  const handleDelete = async () => {
+    console.log(review.id)
+    await deleteReview(review.id)
+  }
   return (
     <View style={styles.reviewCard}>
-      <View style={styles.rating}>
-      <Text style={{color: theme.colors.primary, fontSize: 18 }} fontWeight="bold">{review.rating}</Text>
+      <View style={{ flexDirection: 'row' }}>
+        <View style={styles.rating}>
+          <Text style={{ color: theme.colors.primary, fontSize: 18 }} fontWeight="bold">{review.rating}</Text>
+        </View>
+        <View style={styles.rightContainer}>
+          <Text color="textPrimary" fontWeight="bold" fontSize="subheading">{review.repository.fullName}</Text>
+          <Text style={{ color: theme.colors.secondary, marginBottom: 2 }}>{date}</Text>
+          <Text>{review.text}</Text>
+        </View>
       </View>
-      <View style={styles.rightContainer}>
-        <Text color="textPrimary" fontWeight="bold" fontSize="subheading">{review.repository.fullName}</Text>
-        <Text style={{ color: theme.colors.secondary, marginBottom: 2 }}>{date}</Text>
-        <Text>{review.text}</Text>
+      <View style={styles.actionButtonContainer}>
+        <AppButton style={{ paddingHorizontal: 50 }} type="submit" text="View repository"></AppButton>
+        <AppButton style={{ paddingHorizontal: 50 }} type="delete" text="Delete review" onPress={handleDelete}></AppButton>
       </View>
     </View>
   )

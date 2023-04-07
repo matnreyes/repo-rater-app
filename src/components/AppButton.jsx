@@ -24,6 +24,9 @@ const AppButton = ({ onPress, text, type, style }) => {
       width: '95%',
       alignSelf: 'center',
       textAlign: 'center'
+    },
+    delete: {
+      backgroundColor: theme.colors.error
     }
   })
 
@@ -33,6 +36,8 @@ const AppButton = ({ onPress, text, type, style }) => {
         return styles.submitButton
       case 'submitLarge':
         return [styles.submitButton, styles.largeButton]
+      case 'delete': 
+        return [styles.delete]
       default:
         return styles.button
     }

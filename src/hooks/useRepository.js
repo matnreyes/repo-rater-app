@@ -6,7 +6,7 @@ const useRepository = ({ params }) => {
 
   const { data, loading, error } = useQuery(EXPANDED_REPO, {
     variables: { id },
-    fetchPolicy: 'cache-first'
+    fetchPolicy: 'cache-and-network'
   })
 
   if (loading) return loading
