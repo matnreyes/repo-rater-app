@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const ReviewCard = ({ review }) => {
+const ReviewCard = ({ review, navigation }) => {
   const deleteReview = useDeleteReview()
   const date = format(new Date(review.createdAt), 'MM.dd.yyyy')
 
@@ -60,8 +60,8 @@ const ReviewCard = ({ review }) => {
         </View>
       </View>
       <View style={styles.actionButtonContainer}>
-        <AppButton style={{ paddingHorizontal: 50 }} type="submit" text="View repository"></AppButton>
-        <AppButton style={{ paddingHorizontal: 50 }} type="delete" text="Delete review" onPress={handleDelete}></AppButton>
+        <AppButton style={{ paddingHorizontal: 50 }} type="submit" text="View repository" onPress={() => navigation.navigate('Repository', { id: review.repositoryId })} />
+        <AppButton style={{ paddingHorizontal: 50 }} type="delete" text="Delete review" onPress={handleDelete} />
       </View>
     </View>
   )

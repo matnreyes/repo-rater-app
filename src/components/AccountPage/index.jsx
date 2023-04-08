@@ -29,7 +29,7 @@ const StartUp = ({ navigation }) => {
 
 const ItemSeparator = () => <View style={styles.separator} />
 
-const ReviewList = ({ reviews }) => {
+const ReviewList = ({ reviews, navigation }) => {
   const reviewNodes = reviews
     ? reviews.edges.map(edge => edge.node)
     : []
@@ -38,7 +38,7 @@ const ReviewList = ({ reviews }) => {
     <FlatList
       data={reviewNodes}
       ItemSeparatorComponent={ItemSeparator}
-      renderItem={(review) => <ReviewCard review={review.item}/>}
+      renderItem={(review) => <ReviewCard review={review.item} navigation={navigation} />}
     />
   )
 }
@@ -46,7 +46,7 @@ const ReviewList = ({ reviews }) => {
 const AccountPage = ({ navigation }) => {
   const user = useUser(true)
   return user ? (
-    <ReviewList reviews={user.reviews} />
+    <ReviewList reviews={user.reviews} navigation={navigation} />
   )
   : <StartUp navigation={navigation}/>
 }
