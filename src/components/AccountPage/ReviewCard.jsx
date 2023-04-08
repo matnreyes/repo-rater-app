@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Alert } from 'react-native'
 import Text from '../Text'
 import { format } from 'date-fns'
 import theme from '../../theme'
@@ -37,10 +37,16 @@ const ReviewCard = ({ review }) => {
   const deleteReview = useDeleteReview()
   const date = format(new Date(review.createdAt), 'MM.dd.yyyy')
 
-  const handleDelete = async () => {
-    console.log(review.id)
-    await deleteReview(review.id)
-  }
+  const handleDelete = async () => 
+    Alert.alert('Delete review', `Are you sure you want to delete review for ${review.repository.fullName}`, [
+      {
+        text: 'Cancel',
+        onPress: () => console.log('cancelled'),
+        style: 'cancel'
+      },
+      {text: 'Confirm', onPress: async () => await deleteReview(review.id, review.repositoryId)}
+    ])
+
   return (
     <View style={styles.reviewCard}>
       <View style={{ flexDirection: 'row' }}>
