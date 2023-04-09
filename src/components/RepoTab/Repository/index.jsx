@@ -46,17 +46,22 @@ const ReviewItem = ({ review }) => {
 }
 
 const Repository = ({ route }) => {
-  const repository = useRepository(route)
-  return repository.fullName ?
-    <FlatList 
-      data={repository.reviews.edges}
-      renderItem={({ item }) => <ReviewItem review={item.node} />}
-      keyExtractor={({ node }) => node.id}
-      ListHeaderComponent={() => <RepositoryItem repo={repository} />}
+  const repository = route.params.repo
+  const fetchedReviews = useRepository(route)
+
+  return fetchedReviews
+    ?
+      <FlatList 
+        data={fetchedReviews?.reviews.edges}
+        renderItem={({ item }) => <ReviewItem review={item.node} />}
+        keyExtractor={({ node }) => node.id}
+        ListHeaderComponent={() => <RepositoryItem repo={repository} route={route} />}
       />
-    : <>
-      <Text>loading...</Text>
-    </>
-  }
+    :
+      <>
+        <RepositoryItem route={route} repo={repository} />
+        <Text>loading...</Text>
+      </>
+}
 
 export default Repository 

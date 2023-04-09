@@ -37,7 +37,7 @@ const styles= {
   }
 }
 
-const RepoItemContainer = ({ repo }) => ( 
+const RepoItemContainer = ({ repo, route }) => (
   <View testID="repositoryItem" style={styles.container}>
     <View style={styles.rowContainer}>
       <Image style={styles.avatar} source={{uri: repo.ownerAvatarUrl}}/>
@@ -65,11 +65,11 @@ const RepoItemContainer = ({ repo }) => (
         <Text>rating</Text>
       </Text>
     </View>
-    {repo.url && <AppButton type="submitLarge" text="Open in GitHub" onPress={() => Linking.openURL(repo.url)} style={styles.shadowProp}/>}
+    {route?.params.id && <AppButton type="submitLarge" text="Open in GitHub" onPress={() => Linking.openURL(repo.url)} style={styles.shadowProp}/>}
   </View>
 )
 
-const RepositoryItem = ({ repo }) => {
+const RepositoryItem = ({ repo, route }) => {
   const shortenNum = (number) => {
     if (number > 999999) {
         return `${(number / 1000000).toPrecision(3)}m` 
@@ -87,7 +87,7 @@ const RepositoryItem = ({ repo }) => {
     reviews: shortenNum(repo.reviewCount)
   }
 
-  return <RepoItemContainer repo={parsedRepository} />
+  return <RepoItemContainer repo={parsedRepository} route={route} />
 }
 
 export default RepositoryItem

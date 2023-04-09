@@ -9,7 +9,7 @@ const useRepository = ({ params }) => {
     fetchPolicy: 'cache-and-network'
   })
 
-  if (loading) return loading
+  if (loading) return !loading
   if (error) return error
 
   const { repository } = data

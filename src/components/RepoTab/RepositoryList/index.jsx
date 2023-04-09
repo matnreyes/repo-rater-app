@@ -33,7 +33,8 @@ export const RepositoryListContainer = ({ repositories, navigation }) => {
       ItemSeparatorComponent={ItemSeparator}
       renderItem={(repo) => 
         <TouchableOpacity key={repo.item.id} onPress={() => navigation.navigate('Repository', {
-          id: repo.item.id
+          id: repo.item.id,
+          repo: repo.item
         })}>
           <RepositoryItem repo={repo.item} /> 
         </TouchableOpacity >
@@ -42,7 +43,7 @@ export const RepositoryListContainer = ({ repositories, navigation }) => {
   )
 }
 
-const RepositoryList = ({navigation, route}) => {
+const RepositoryList = ({ navigation, route }) => {
   const [search, setSearch] = useState('')
   const [searchValue] = useDebounce(search, 500)
   const { orderBy } = route.params ? route.params : 'CREATED_AT'
@@ -53,7 +54,7 @@ const RepositoryList = ({navigation, route}) => {
   return (
     <>
       <SearchBar value={search} setSearch={setSearch} />
-      <RepositoryListContainer repositories={repositories ? repositories : []} navigation={navigation}/>
+      <RepositoryListContainer repositories={repositories ? repositories : []} navigation={navigation} />
     </>
 
   )

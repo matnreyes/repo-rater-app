@@ -11,6 +11,7 @@ const REPO_INFO = gql`
     description
     ownerAvatarUrl
     language
+    url
   }
 `
 
@@ -53,8 +54,6 @@ export const USER_INFO = gql`
 export const EXPANDED_REPO = gql`
   query Repository($id: ID!) {
     repository(id: $id) {
-      ...RepoInfo
-      url
       reviews {
         edges {
           node {
@@ -71,7 +70,6 @@ export const EXPANDED_REPO = gql`
       }
     }
   }
-  ${REPO_INFO}
 `
 
 export const SORTED_REPOS = gql`
