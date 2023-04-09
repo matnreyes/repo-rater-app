@@ -11,7 +11,7 @@ const style = StyleSheet.create({
 })
 
 const ReviewForm = ({ navigation }) => {
-  const {control, handleSubmit} = useForm()
+  const {control, handleSubmit, reset} = useForm()
   const createReview = useCreateReview()
 
   const onSubmit = async (data) => {
@@ -20,6 +20,7 @@ const ReviewForm = ({ navigation }) => {
       navigation.navigate('Repository', {
         id: repositoryId
       })
+      reset()
     } catch (e) {
       console.log(e)
     }

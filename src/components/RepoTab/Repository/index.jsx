@@ -46,9 +46,9 @@ const ReviewItem = ({ review }) => {
 }
 
 const Repository = ({ route }) => {
-  const repository = route.params.repo
   const fetchedReviews = useRepository(route)
-
+  const repository = route.params.repo ? route.params.repo : fetchedReviews
+  
   return fetchedReviews
     ?
       <FlatList 
@@ -58,10 +58,13 @@ const Repository = ({ route }) => {
         ListHeaderComponent={() => <RepositoryItem repo={repository} route={route} />}
       />
     :
+      repository 
+      ?
       <>
         <RepositoryItem route={route} repo={repository} />
         <Text>loading...</Text>
       </>
+      : <Text>loading...</Text>
 }
 
 export default Repository 
