@@ -47,11 +47,11 @@ export const RepositoryListContainer = ({ repositories, navigation, onEndReach }
 
 const RepositoryList = ({ navigation, route }) => {
   const [search, setSearch] = useState('')
-  const [searchValue] = useDebounce(search, 500)
+  const [searchKeyword] = useDebounce(search, 500)
   const { orderBy } = route.params ? route.params : 'CREATED_AT'
   const { orderDirection } = route.params ? route.params : 'DESC'
 
-  const { repositories, fetchMore } = useRepositories({ orderBy, orderDirection, searchValue, first: 8})
+  const { repositories, fetchMore } = useRepositories({ orderBy, orderDirection, searchKeyword, first: 8})
 
   const onEndReach = () => {
     if (repositories) {
