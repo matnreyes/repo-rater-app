@@ -57,10 +57,10 @@ export const USER_INFO = gql`
 `
 
 export const EXPANDED_REPO = gql`
-  query Repository($id: ID!) {
+  query Repository($id: ID!, $first: Int = 8, $after: String = "") {
     repository(id: $id) {
       ...RepoInfo
-      reviews {
+      reviews (first: $first, after: $after){
         edges {
           node {
             id
@@ -72,6 +72,11 @@ export const EXPANDED_REPO = gql`
               username
             }
           }
+        }
+        pageInfo {
+          endCursor
+          startCursor
+          hasNextPage
         }
       }
     }

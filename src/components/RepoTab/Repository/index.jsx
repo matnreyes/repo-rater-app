@@ -46,13 +46,19 @@ const ReviewItem = ({ review }) => {
 }
 
 const Repository = ({ route }) => {
-  const fetchedReviews = useRepository(route)
-  const repository = route.params.repo ? route.params.repo : fetchedReviews
-  
-  return fetchedReviews
+  const { repository, fetchMore } = useRepository({id: route.params.id})
+  const repo = route.params.repo ? route.params.repo : repository
+
+  const onEndReach = () => {
+    if (repository) {
+      fetchMore()
+    }
+  }
+
+  return repository
     ?
       <FlatList 
-        data={fetchedReviews?.reviews.edges}
+        data={repository?.reviews.edges}
         renderItem={({ item }) => <ReviewItem review={item.node} />}
         keyExtractor={({ node }) => node.id}
         ListHeaderComponent={() => <RepositoryItem repo={repository} route={route} />}
@@ -61,7 +67,7 @@ const Repository = ({ route }) => {
       repository 
       ?
       <>
-        <RepositoryItem route={route} repo={repository} />
+        <RepositoryItem route={route} repo={repo} />
         <Text>loading...</Text>
       </>
       : <Text>loading...</Text>
