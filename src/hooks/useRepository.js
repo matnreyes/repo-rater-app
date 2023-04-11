@@ -11,7 +11,7 @@ const useRepository = (variables) => {
   if (error) return error
 
   const handleFetchMore = () => {
-    const canFetchMore = data?.repository.pageInfo.hasNextPage
+    const canFetchMore = data?.repository.reviews.pageInfo.hasNextPage
 
     if (!canFetchMore) {
       return
@@ -19,12 +19,10 @@ const useRepository = (variables) => {
 
     fetchMore({
       variables: {
-        after: data.repository.pageInfo.endCursor,
+        after: data.repository.reviews.pageInfo.endCursor,
         ...variables
       }
     })
-
-    console.log('here')
   }
 
   return {

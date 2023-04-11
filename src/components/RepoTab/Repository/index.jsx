@@ -62,6 +62,7 @@ const Repository = ({ route }) => {
         renderItem={({ item }) => <ReviewItem review={item.node} />}
         keyExtractor={({ node }) => node.id}
         ListHeaderComponent={() => <RepositoryItem repo={repository} route={route} />}
+        onEndReached={onEndReach}
       />
     :
       repository 

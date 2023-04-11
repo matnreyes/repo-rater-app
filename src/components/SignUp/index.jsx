@@ -44,7 +44,7 @@ const SignUp = ({ navigation }) => {
   }
 
   return (
-    <View style={style.signupContainer}>=
+    <View style={style.signupContainer}>
       <FormInput name="username" placeholder="Username" control={control} rules={rules.username} />
       <FormInput name="password" placeholder="Password" control={control} rules={rules.password} secureTextEntry />
       <FormInput name="passwordConfirm" placeholder="Re-enter your password" control={control} rules={rules.confirmPassword} secureTextEntry />

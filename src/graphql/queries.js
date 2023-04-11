@@ -57,7 +57,7 @@ export const USER_INFO = gql`
 `
 
 export const EXPANDED_REPO = gql`
-  query Repository($id: ID!, $first: Int = 8, $after: String = "") {
+  query Repository($id: ID!, $first: Int = 6, $after: String = "") {
     repository(id: $id) {
       ...RepoInfo
       reviews (first: $first, after: $after){
@@ -75,7 +75,6 @@ export const EXPANDED_REPO = gql`
         }
         pageInfo {
           endCursor
-          startCursor
           hasNextPage
         }
       }
